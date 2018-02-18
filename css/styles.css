@@ -1,0 +1,54 @@
+body {
+  font-family: 'Cutive Mono';
+  font-size: 15px;
+  color:Black;
+}
+
+h1 {
+  font-family: 'Fredoka One';
+  font-size: 19px;
+}
+
+footer {
+  position: fixed;
+  z-index: 1000;
+  bottom: 10px;
+  color:White;
+}
+
+#my-map {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+#container {
+  position: absolute;
+  z-index: 1000;
+  top: 11px;
+  left: 56px;
+  background: #FFF;
+  opacity: 0.8;
+  padding: 10px;
+  border-radius: 10px 10px 50px 10px;
+  border: 2px solid ;
+  border-color: #00BFFF;
+  width: 250px;
+}
+
+#legend {
+  text-align: left;
+  position: absolute;
+  z-index: 1000;
+  top: 40px;
+  left: 300px;
+  background: #FFF;
+  opacity: 0.8;
+  padding: 10px;
+  border-radius: 10px 10px 10px 50px;
+  border: 2px solid ;
+  border-color: #00BFFF;
+  width: 250px;
+}
