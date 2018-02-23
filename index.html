@@ -21,18 +21,21 @@
 <body>
   <div id="container">
     <h1>Citibike stations in NYC</h1>
-    <p>This map displays CityBike stations in NYC</p>
-    <p></p>
+    <p>This map displays CityBike stations in NYC and the total trips during January 22, 2018 </p>
+    <p>Click on any station to know how many trips started or ended there </p>
     <p style='font-size: 70%'> By the way, you can drag the containers to get them out of the way </p>
   </div>
   <div id="legend">
     <h1>Legend</h1>
-    <p>(TBD)</p>
+    <div class='legendItem A'>Less than 10 trips </div>
+    <div class='legendItem B'>10 - 19 trips</div>
+    <div class='legendItem C'>20 - 49 trips</div>
+    <div class='legendItem D'>50 - 99 trips</div>
+    <div class='legendItem E'>More than 100 trips</div>
     <p></p>
   </div>
 
   <footer> Data from: <a target='_blank' href='https://www.citibikenyc.com/system-data'> System Data > Citi Bike Trip Histories </a> </footer>
-
 
   <div id='my-map'>  </div>
 
@@ -52,8 +55,8 @@ crossorigin='anonymous'></script>
 <!-- LOAD DATA  -->
 <script src="data/NYpoints_var.js"></script>
 
-<!-- LOAD JS script
-<script src="js/scripts.js"></script> -->
+<!-- LOAD JS script -->
+<!-- <script src="js/scripts.js"></script> -->
 <script src="js/map.js"></script>
 <script src="js/draggable.js"></script>
 
@@ -61,3 +64,62 @@ crossorigin='anonymous'></script>
 </html>
 
 <!--
+
+station
+stationid
+lat
+lon
+start
+end
+total
+start_class
+end_class
+total_class
+start_0
+start_1
+start_2
+start_3
+start_4
+start_5
+start_6
+start_7
+start_8
+start_9
+start_10
+start_11
+start_12
+start_13
+start_14
+start_15
+start_16
+start_17
+start_18
+start_19
+start_20
+start_21
+start_22
+start_23
+end_0
+end_1
+end_2
+end_3
+end_4
+end_5
+end_6
+end_7
+end_8
+end_9
+end_10
+end_11
+end_12
+end_13
+end_14
+end_15
+end_16
+end_17
+end_18
+end_19
+end_20
+end_21
+end_22
+end_23
