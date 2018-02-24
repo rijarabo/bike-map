@@ -1,8 +1,9 @@
 
 // NYC Center
-var centerMap =[40.743225,-74.003735];
-var zoomMap= 12;
+var centerMap =[40.757790,-73.979015];
+var zoomMap= 13;
 var map = L.map('my-map').setView(centerMap, zoomMap);
+var angle= Math.PI / 6;
 
 // map //
 
@@ -19,18 +20,19 @@ var classArray=['A','B','C','D'];
 
 // Total
 //                      0          1         2         3         4         5
-  var TotTripsArray = [500,        300,      200,      100,      0,       0];
-  var radiusArray   = [20,         15,       10,       5,        3,       3];
-  var TotcolorArray = ['#8B008B','#C71585','#FF1493','#FF69B4','#FFB6C1'];
+  // var TotTripsArray = [500,        200,      100,      50,       10,      0];
+	var TotTripsArray = [200,        100,      50,       20,       10,       0];
+  var radiusArray   = [20,         15,       10,       5,        3,        3];
+  var TotcolorArray = ['#8B008B','#C71585','#FF1493','#FF69B4','#FFB6C1','#C0C0C0'];
 //                     0           1         2         3         4         5
 
-// // StartEnd
-// //                      0          1         2         3         4         5
-//   var SETripsArray = [200,        100,      50,       20,      10,       0];
-//   var radiusArray  = [20,         15,       10,       5,        3,       3];
-//   var ScolorArray = ['#9ACD32','#32CD32','#6B8E23','#008000','#006400'];
-//   var EcolorArray = ['#FEB24C','#FF6347','#FF4500','#BD0026','#800026'];
-// //                     0           1         2         3         4         5
+// StartEnd
+//                      0          1         2         3         4        5
+  var SETripsArray  = [200,        100,      50,       20,       10,       0];
+  var SEradiusArray = [20,         15,       10,       5,        3,        3];
+	var ScolorArray   = ['#006400','#008000','#6B8E23','#32CD32','#9ACD32','#C0C0C0'];
+	var EcolorArray   = ['#DC143C','#FF0000','#FF4500','#FFA500','#FFD700','#C0C0C0'];
+//                     0           1         2         3         4         5
 
 // **********************************
 // define functions for start / end //
@@ -56,7 +58,6 @@ function getTotColor(c) {
               TotcolorArray[5] ;
 }
 
-
 function TotStyle(feature) {
   return {
     weight: 0,
@@ -68,52 +69,53 @@ function TotStyle(feature) {
 }
 
 //  RADIUS COLOR AND STTYLE FOR START END TRIPS
-// function getStartEndRadius(d) {
-//   return d >StartEndTripsArray[0] ? radiusArray[0] :
-//          d >StartEndTripsArray[1] ? radiusArray[1] :
-//          d >StartEndTripsArray[2] ? radiusArray[2] :
-//          d >StartEndTripsArray[3] ? radiusArray[3] :
-//               radiusArray[5] ;
-// }
-//
-// function getEndColor(c) {
-//   return c >StartEndTripsArray[0] ? EndcolorArray[0] :
-//          c >StartEndTripsArray[1] ? EndcolorArray[1] :
-//          c >StartEndTripsArray[2] ? EndcolorArray[2] :
-//          c >StartEndTripsArray[3] ? EndcolorArray[3] :
-//               StartEndTripsArray[5] ;
-// }
-//
-// function getStartColor(c) {
-//   return c >StartEndTripsArray[0] ? StartcolorArray[0] :
-//          c >StartEndTripsArray[1] ? StartcolorArray[1] :
-//          c >StartEndTripsArray[2] ? StartcolorArray[2] :
-//          c >StartEndTripsArray[3] ? StartcolorArray[3] :
-//               StartEndTripsArray[5] ;
-// }
-//
-// function StartStyle(feature) {
-//   return {
-//     weight: 2,
-//     opacity: 1,
-//     color: 'white',
-//     fillOpacity: 0.7,
-//     fillColor: getStartColor(feature.properties.start), //
-//     radius: getDiameter(feature.properties.start)
-//   };
-// }
-//
-// function EndStyle(feature) {
-//   return {
-//     weight: 2,
-//     opacity: 1,
-//     dashArray: '3',
-//     fillOpacity: 0.7,
-//     fillColor: getEndColor(feature.properties.end), //
-//     radius: getDiameter(feature.properties.end)
-//   };
-// }
-//
+
+function getSERadius(r) {
+  return r >SETripsArray[0] ? SEradiusArray[0] :
+         r >SETripsArray[1] ? SEradiusArray[1] :
+         r >SETripsArray[2] ? SEradiusArray[2] :
+         r >SETripsArray[3] ? SEradiusArray[3] :
+         r >SETripsArray[4] ? SEradiusArray[4] :
+              SEradiusArray[5] ;
+}
+
+function getStartColor(c) {
+  return c >SETripsArray[0] ? ScolorArray[0] :
+         c >SETripsArray[1] ? ScolorArray[1] :
+         c >SETripsArray[2] ? ScolorArray[2] :
+         c >SETripsArray[3] ? ScolorArray[3] :
+         c >SETripsArray[4] ? ScolorArray[4] :
+              ScolorArray[5] ;
+}
+
+function getEndColor(c) {
+  return c >SETripsArray[0] ? EcolorArray[0] :
+         c >SETripsArray[1] ? EcolorArray[1] :
+         c >SETripsArray[2] ? EcolorArray[2] :
+         c >SETripsArray[3] ? EcolorArray[3] :
+         c >SETripsArray[4] ? EcolorArray[4] :
+              EcolorArray[5] ;
+}
+
+function StartStyle(feature) {
+  return {
+    weight: 0,
+    opacity: 1,
+    fillOpacity: 0.5,
+    fillColor: getStartColor(feature.properties.start), //
+    radius: getSERadius(feature.properties.start)
+  };
+}
+
+function EndStyle(feature) {
+  return {
+    weight: 0,
+    opacity: 1,
+    fillOpacity: 0.5,
+    fillColor: getEndColor(feature.properties.end), //
+    radius: getSERadius(feature.properties.end)
+  };
+}
 
 function onEachFeature (feature,layer) {
   var popup=layer.bindPopup(`
@@ -126,29 +128,39 @@ function onEachFeature (feature,layer) {
 // ADD LAYERS                      //
 // **********************************
 
+// layer control tutorial: http://leafletjs.com/examples/layers-control/
+
 // TOTAL TRIPS FOR EACH STATION //
-TOTALgeojson = L.geoJson(NYstations, {
+var TOTALgeojson = L.geoJson(NYstations, {
   pointToLayer: function (feature, latlng) {
     return L.circleMarker(latlng)
   },
   style: TotStyle, // TotStyle property calls "style" object defined above
   onEachFeature: onEachFeature // onEachFeature property calls "onEachFeature" function defined above
-}).addTo(map);
+});
 
-// // STARTING TRIPS FOR EACH STATION //
-// STARTgeojson = L.geoJson(NYstations, {
-//   pointToLayer: function (feature, latlng) {
-//     return L.circleMarker(latlng)
-//   },
-//   style: StartStyle, // StartStyle property calls "style" object defined above
-//   onEachFeature: onEachFeature // onEachFeature property calls "onEachFeature" function defined above
-// }).addTo(map);
-//
-// // ENDING TRIPS FOR EACH STATION //
-// ENDgeojson = L.geoJson(NYstations, {
-//   pointToLayer: function (feature, latlng) {
-//     return L.circleMarker(latlng)
-//   },
-//   style: EndStyle, // EndStyle property calls "style" object defined above
-//   onEachFeature: onEachFeature // onEachFeature property calls "onEachFeature" function defined above
-// }).addTo(map);
+// STARTING TRIPS FOR EACH STATION //
+var STARTgeojson = L.geoJson(NYstations, {
+  pointToLayer: function (feature, latlng) {
+    return L.circleMarker(latlng)
+  },
+  style: StartStyle, // StartStyle property calls "style" object defined above
+  onEachFeature: onEachFeature // onEachFeature property calls "onEachFeature" function defined above
+});
+
+// ENDING TRIPS FOR EACH STATION //
+var ENDgeojson = L.geoJson(NYstations, {
+  pointToLayer: function (feature, latlng) {
+    return L.circleMarker(latlng)
+  },
+  style: EndStyle, // EndStyle property calls "style" object defined above
+  onEachFeature: onEachFeature // onEachFeature property calls "onEachFeature" function defined above
+});
+
+var overlay = {
+	"All trips": TOTALgeojson,
+	"Starting trips": STARTgeojson,
+	"Ending trips": ENDgeojson,
+};
+
+L.control.layers(overlay,null,{collapsed:false}).addTo(map);
