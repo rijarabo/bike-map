@@ -137,7 +137,7 @@ var TOTALgeojson = L.geoJson(NYstations, {
   },
   style: TotStyle, // TotStyle property calls "style" object defined above
   onEachFeature: onEachFeature // onEachFeature property calls "onEachFeature" function defined above
-});
+}).addTo(map);;
 
 // STARTING TRIPS FOR EACH STATION //
 var STARTgeojson = L.geoJson(NYstations, {
